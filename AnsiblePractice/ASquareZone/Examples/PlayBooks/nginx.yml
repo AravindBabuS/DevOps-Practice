@@ -1,0 +1,26 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+
+  - name: Nginx Installation
+    yum:
+      name: nginx
+      state: present
+    when: ansible_os_family=="Redhat"
+
+  - name: nginx Service starting
+    service:
+      name: nginx
+      state: restarted  
+
+  - name: Nginx Installation
+    apt:
+      name: nginx
+      state: present
+    when: not ansible_os_family=="Redhat"   
+
+  - name: nginx Service starting
+    service:
+      name: nginx
+      state: restarted

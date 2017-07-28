@@ -1,0 +1,12 @@
+---
+- hosts: other
+  become: yes
+  tasks:
+  - name: tomcat istallation process
+    yum:
+      name: apache2
+      state: present
+  - name: Ensure apache service is running
+    service:
+      name: apache2
+      state: stopped
